@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesan Cinta</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      margin-top: 15px;
+      cursor: pointer;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .message {
+      color: #c71585;
+      font-size: 26px;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px white;
+    }
+
+    .flower, .heart {
+      position: absolute;
+      font-size: 30px;
+      opacity: 0;
+      animation: floatUp 5s forwards ease-in;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-300px) scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="message" id="message">Klik tombol untuk melihat pesan</h1>
+    <button id="loveButton" onclick="showLove()">Tekan terus menerus</button>
+    <div id="flowers"></div>
+  </div>
+
+  <!-- Audio romantis legal -->
+  <audio id="romanticMusic" src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3"></audio>
+
+  <script>
+    let timerStarted = false;
+    let musicPlayed = false;
+
+    function showLove() {
+      if (!timerStarted) {
+        // Mulai timer 5 detik hanya sekali
+        timerStarted = true;
+
+        // Setelah 5 detik, tombol akan menghilang selama 2 detik
+        setTimeout(() => {
+          const button = document.getElementById('loveButton');
+          button.classList.add('hidden'); // Sembunyikan tombol
+
+          // Ganti pesan menjadi "Sabar ya cantik" selama 2 detik
+          const message = document.getElementById('message');
+          message.innerText = "Sudah cukup";
+
+          // Setelah 2 detik, tampilkan tombol baru dan ganti pesan menjadi "Sekarang tekan ini"
+          setTimeout(() => {
+            const nextButton = document.createElement('button');
+            nextButton.innerText = "Lanjut";
+            nextButton.onclick = goToNextPage;
+            document.body.appendChild(nextButton);
+
+            message.innerText = "Sekarang tekan ini"; // Ubah pesan
+          }, 4000); // Tombol baru muncul setelah 4 detik
+        }, 6000); // Tombol pertama menghilang setelah 6 detik
+      }
+
+      const message = document.getElementById('message');
+      message.innerText = "Untuk indyy, perempuan yang selalu catik dan indah 💖🌸";
+
+      const flowers = document.getElementById('flowers');
+      const totalItems = 80;
+
+      for (let i = 0; i < totalItems; i++) {
+        const icon = document.createElement('div');
+        icon.className = Math.random() > 0.5 ? 'flower' : 'heart';
+        icon.innerText = Math.random() > 0.5 ? '🌸' : '💖';
+        icon.style.left = Math.random() * window.innerWidth + 'px';
+        icon.style.top = Math.random() * window.innerHeight + 'px';
+        icon.style.fontSize = `${20 + Math.random() * 30}px`;
+        flowers.appendChild(icon);
+        setTimeout(() => icon.remove(), 5000);
+      }
+
+      // Mainkan musik hanya sekali
+      const music = document.getElementById('romanticMusic');
+      if (!musicPlayed) {
+        music.play();
+        musicPlayed = true;
+      }
+    }
+
+    function goToNextPage() {
+  // Pindah ke halaman berikutnya
+  window.location.href = 'index.html'; // Ganti dengan path file HTML yang sesuai
+} 
+
+  </script>
+</body>
+</html>
