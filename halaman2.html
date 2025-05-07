@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+    <title>Beranda Romantis</title>
+      <style>
+      body {
+            margin: 0;
+            background-color: #ffe4e9;
+            font-family: 'Segoe UI', sans-serif;
+            color: #c2185b;
+            text-align: center;
+            padding-top: 100px;
+            overflow: hidden;
+      }
+
+      h1 {
+            font-size: 50px;
+            text-shadow: 0 0 8px #ff80ab;
+      }
+
+      button {
+            background-color: #f8bbd0;
+            color: #880e4f;
+            border: none;
+            padding: 5px 20px;
+            font-size: 28px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff80ab;
+            transition: 0.3s ease;
+            margin-top: 30px;
+      }
+      
+      button:hover {
+            background-color: #f48fb1;
+            box-shadow: 0 0 20px #ff4081;
+      }
+
+/* LOVE / HEART ANIMATION */
+      .love {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #e91e63;
+            transform: rotate(45deg);
+            animation: fall 5s linear infinite;
+            z-index: 0;
+      }
+
+      .love::before,
+      .love::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #e91e63;
+            border-radius: 50%;
+      }
+
+      .love::before {
+            top: -15px;
+            left: 0;
+      }
+
+      .love::after {
+            left: -15px;
+            top: 0;
+      }
+
+@keyframes fall {
+      0% {
+            top: -50px;
+            opacity: 1;
+      }
+      100% {
+            top: 100vh;
+            opacity: 0;
+            }
+      }
+
+</style>
+</head>
+<body>
+      <h1>Halloo Indyy Kesayangann Abanggg</h1>
+      <button onclick="window.location.href='halaman2.html'"><h5>buka di sini</h5></button>
+      
+
+<script>
+function createHeart() {
+const heart = document.createElement('div');
+heart.classList.add('love');
+heart.style.left = Math.random() * window.innerWidth + 'px';
+heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+document.body.appendChild(heart);
+setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 300);
+
+function startNextPage() {
+  localStorage.setItem("playMusic", "yes");
+  window.location.href = 'halaman2.html';
+}
+
+</script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            
